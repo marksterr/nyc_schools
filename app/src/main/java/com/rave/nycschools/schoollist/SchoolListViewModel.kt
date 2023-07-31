@@ -24,7 +24,6 @@ class SchoolListViewModel @Inject constructor(private val repo: SchoolRepo) : Vi
 
     // State of the school list feature
     var state by mutableStateOf(SchoolListContract.State())
-        private set
 
     // Favorites stored in a separate state so recomposition can be triggered
     var favorites by mutableStateOf(mutableStateListOf<String>())
