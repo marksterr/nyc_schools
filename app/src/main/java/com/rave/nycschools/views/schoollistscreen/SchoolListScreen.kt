@@ -74,10 +74,17 @@ fun SchoolListScreen(
                 )
 
                 // Add a Checkbox that toggles the state of showFavoritesFirst
-                 Checkbox(
-                    checked = showFavoritesFirst,
-                    onCheckedChange = { showFavoritesFirst = it }
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Checkbox(
+                        checked = showFavoritesFirst,
+                        onCheckedChange = { showFavoritesFirst = it }
+                    )
+                    Text(
+                        text = "Sort by favorites",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.Gray
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(16.dp)) // Space between title and list
             LazyColumn(
