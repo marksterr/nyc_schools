@@ -12,10 +12,6 @@ The School List App is an Android application developed in Jetpack Compose. It f
 
 - **School Details**: By tapping on a school card, users can view detailed information about the school, including the average SAT scores in different subjects.
 
-## Screenshots
-
-(Include screenshots of your app here)
-
 ## Tech Stack
 
 - **Jetpack Compose**: The UI is built entirely using Jetpack Compose, Google's modern toolkit for building native Android UI.
