@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.rave.nycschools.model.local.entity.School
 
@@ -32,6 +34,7 @@ fun DetailScreen(school: School) {
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.align(Alignment.TopCenter)
+                .semantics { contentDescription = "School name: ${school.schoolName}" }
         )
 
         Column(
@@ -41,35 +44,40 @@ fun DetailScreen(school: School) {
             Text(
                 text = "SAT Scores",
                 style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.secondary
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.semantics { contentDescription = "SAT Scores title" }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             // Display the number of SAT test takers
             Text(
                 text = "Number of SAT Test Takers: ${school.numOfSatTestTakers}",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { contentDescription = "Number of SAT Test Takers: ${school.numOfSatTestTakers}" }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             // Display the SAT critical reading average score
             Text(
                 text = "SAT Critical Reading Average Score: ${school.satCriticalReadingAvgScore}",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { contentDescription = "SAT Critical Reading Average Score: ${school.satCriticalReadingAvgScore}" }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             // Display the SAT math average score
             Text(
                 text = "SAT Math Average Score: ${school.satMathAvgScore}",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { contentDescription = "SAT Math Average Score: ${school.satMathAvgScore}" }
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             // Display the SAT writing average score
             Text(
                 text = "SAT Writing Average Score: ${school.satWritingAvgScore}",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { contentDescription = "SAT Writing Average Score: ${school.satWritingAvgScore}" }
             )
         }
     }

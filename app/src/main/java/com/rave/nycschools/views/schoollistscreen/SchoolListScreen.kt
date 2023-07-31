@@ -30,6 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.rave.nycschools.model.local.entity.School
 import com.rave.nycschools.schoollist.SchoolListViewModel
@@ -70,14 +72,16 @@ fun SchoolListScreen(
                 Text(
                     text = "School List",
                     style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.semantics { contentDescription = "School List Title" }
                 )
 
                 // Add a Checkbox that toggles the state of showFavoritesFirst
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Checkbox(
                         checked = showFavoritesFirst,
-                        onCheckedChange = { showFavoritesFirst = it }
+                        onCheckedChange = { showFavoritesFirst = it },
+                        modifier = Modifier.semantics { contentDescription = "Sort by favorites checkbox" }
                     )
                     Text(
                         text = "Sort by favorites",
@@ -115,7 +119,8 @@ fun SchoolCard(viewModel: SchoolListViewModel, school: School, navigate: (School
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { navigate(school) },
+            .clickable { navigate(school) }
+            .semantics { contentDescription = "School Card for ${school.schoolName}" },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
@@ -135,7 +140,11 @@ fun SchoolCard(viewModel: SchoolListViewModel, school: School, navigate: (School
             IconButton(onClick = { viewModel.toggleFavorite(school.schoolName) }) {
                 Icon(
                     imageVector = Icons.Filled.Star,
-                    contentDescription = "Favorite",
+                    contentDescription = if (viewModel.favorites.contains(school.schoolName)) {
+                        "Remove ${school.schoolName} from favorites"
+                    } else {
+                        "Add ${school.schoolName} to favorites"
+                    },
                     tint = if (viewModel.favorites.contains(school.schoolName)) Color.Yellow else Color.LightGray,
                     modifier = Modifier.weight(0.2f)  // Allocate 20% of width to the IconButton
                 )
